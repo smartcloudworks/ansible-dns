@@ -1,0 +1,17 @@
+---
+# variables for master dns role
+
+allow_query: "{{ slave_ipv4 }}"
+
+recursion: "no"
+
+server:
+  - ipv4: "{{ master_ipv4 }}"
+  - expire: "1W"
+  - fwd_zone_file: "fwd.{{ domain }}.db"
+  - minimum: "3H"
+  - name: "ns01"
+  - refresh: "1D"
+  - retry: "1H"
+  - serial: "1"
+  - type: "master"

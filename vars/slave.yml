@@ -1,0 +1,17 @@
+---
+# variables for slave dns role
+
+allow_query: "{{ network_range }}"
+
+recursion: "yes"
+
+server:
+  - ipv4: "{{ slave_ipv4 }}"
+  - expire: "1W"
+  - fwd_zone_file: "fwd.{{ domain }}.db"
+  - minimum: "3H"
+  - name: "ns01"
+  - refresh: "1D"
+  - retry: "1H"
+  - serial: "1"
+  - type: "slave"

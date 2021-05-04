@@ -1,0 +1,59 @@
+---
+vars_prompt:
+  - name: user_input
+    prompt: Enter DNS server role (master/slave):
+    private: no
+
+vars:
+  - server_role: "{{ user_input | lower }}"
+
+assert:
+  that:
+    - "{{ server_role }} in {{ valid_role_inputs }}"
+  fail_msg: "Invalid input. Acceptable inputs are either master or slave"
+
+- name: Install Bind Packages
+  become: yes
+  yum:
+    name:
+      - bind
+      - bind-utils
+    state: present
+
+- name: Start named service
+  become: yes
+  systemd:
+    name: named
+    state: started
+
+- name: Open Firewall Port
+  become: yes
+  firewalld:
+    service: dns
+    permanent: yes
+    state: enabled
+  notify: reload firewall
+
+- name: Source Correct Variables
+  include_vars: "{{ server_role }}.yml"
+
+- name: Configure Forward Zone File
+  template:
+    src: fwd.domain.j2
+    dest: /var/named/fwd.{{ domain }}.db
+    mode: 0644
+    owner: named
+    group: named
+  become: yes
+
+- name: Configure Main Bind Config File
+  template:
+    src: named.conf.j2
+    dest: /etc/named.conf
+    mode: 0640
+    owner: root
+    group: named
+    setype: named_conf_t
+    validate: 'named-checkconf %s'
+  become: yes
+  notify: reload named
