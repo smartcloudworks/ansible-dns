@@ -6,16 +6,15 @@ network_range: "192.168.50.0/24"
 
 domain: "special.localdomain"
 
-server:
-  - ipv4: ""
-  - expire: "1W"
-  - fwd_zone_file: "fwd.{{ domain }}.db"
-  - minimum: "3H"
-  - name: "ns01"
-  - refresh: "1D"
-  - retry: "1H"
-  - serial: "1"
-  - type: ""
+server_ipv4: ""
+server_expire: "1W"
+server_fwd_zone_file: "fwd.{{ domain }}.db"
+server_minimum: "3H"
+server_name: "ns01"
+server_refresh: "1D"
+server_retry: "1H"
+server_serial: "1"
+server_type: ""
 
 valid_role_inputs:
   - "master"

@@ -1,0 +1,17 @@
+DNS ROLE
+
+This role simply creates a master (primary) and a secondary (slave)
+dns servers.
+
+Here are a list of assumptions and prerequisites for this role:
+1. You have already planned your DNS scheme and you know what you
+   are doing.
+2. You are configuring one master and one slave DNS servers, a total of two.
+3. You are using a RedHat 7 based distribution.
+
+Order in which you should build your DNS environment with this role.
+1. Plan your DNS scheme.
+2. First configure the master DNS server. This is necessary in order to
+   generate the rndc key. The rndc key is what is used to securely communicate
+   between the slave and master DNS servers.
+3. Configure the slave DNS server.

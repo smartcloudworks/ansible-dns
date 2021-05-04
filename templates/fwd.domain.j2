@@ -1,11 +1,11 @@
-@       IN       SOA       {{ server['name'] }}.{{ domain }}. (
-                       {{ server['serial'] }} ; serial
-                       {{ server['refresh'] }} ; refresh
-                       {{ server['retry'] }} ; retry
-                       {{ server['expire'] }} ; expire
-                       {{ server['minimum'] }} ; minimum
+@       IN       SOA       {{ server_name }}.{{ domain }}. (
+                       {{ server_serial }} ; serial
+                       {{ server_refresh }} ; refresh
+                       {{ server_retry }} ; retry
+                       {{ server_expire }} ; expire
+                       {{ server_minimum }} ; minimum
 )
 ; name servers
-@       NS       {{ server['name'] }}.{{ domain }}.
+@       NS       {{ server_name }}.{{ domain }}.
 ; a records
-{{ server['name'] }}       IN       A       {{ slave_ipv4 }}
+{{ server_name }}       IN       A       {{ slave_ipv4 }}

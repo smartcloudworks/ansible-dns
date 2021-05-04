@@ -10,7 +10,7 @@
 // configuration located in /usr/share/doc/bind-{version}/Bv9ARM.html
 
 options {
-	listen-on port 53 { 127.0.0.1; {{ server['ipv4'] }}; };
+	listen-on port 53 { 127.0.0.1; {{ server_ipv4 }}; };
 	listen-on-v6 port 53 { ::1; };
 	directory 	"/var/named";
 	dump-file 	"/var/named/data/cache_dump.db";
@@ -57,8 +57,8 @@ zone "." IN {
 };
 
 zone "{{ domain }}" IN {
-  type {{ server['type'] }};
-  file "{{ server['fwd_zone_file'] }}";
+  type {{ server_type }};
+  file "{{ server_fwd_zone_file }}";
 };
 
 include "/etc/named.rfc1912.zones";
