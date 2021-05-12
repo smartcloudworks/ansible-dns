@@ -1,9 +1,0 @@
----
-# variables for master dns role
-
-allow_query: "{{ slave_ipv4 }}"
-
-recursion: "no"
-
-server_ipv4: "{{ master_ipv4 }}"
-server_type: "master"
