@@ -1,6 +1,6 @@
 ---
 - name: Firewall Reload
-  command: firewall-cmd --reload
+  command: /usr/bin/firewall-cmd --reload
   listen: "reload firewalld"
 
 - name: Bind Reload

@@ -49,4 +49,3 @@ NOTE:
 - You must know what you're doing when updating the zone files.
 
 TO FIX
-- For some reason, the last time I ran this, the firewall-cmd --reload did not execute. After minor troubleshooting, I ran it on the dns servers and everything started to magically work.
