@@ -1,0 +1,9 @@
+---
+# variables for primary dns role
+
+allow_query: "{{ secondary_ipv4 }}"
+
+recursion: "no"
+
+server_ipv4: "{{ primary_ipv4 }}"
+server_type: "master"

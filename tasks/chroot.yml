@@ -1,6 +1,5 @@
 ---
 - name: Create chroot directory tree
-  become: yes
   file:
     path: "{{ item }}"
     state: directory
@@ -16,20 +15,21 @@
     - /chroot/named/var/named/run
 
 - name: Copy needed files
-  become: yes
   copy:
+    remote_src: yes
     src: "{{ item['source'] }}"
     dest: "{{ item['destination'] }}"
   with_items:
-    - { source: /etc/named.conf, destination: /chroot/named/etc/ }
-    - { source: /etc/localtime, destination: /chroot/named/etc/ }
+    - { source: /etc/named.conf, destination: /chroot/named/etc/named.conf }
+    - { source: /etc/localtime, destination: /chroot/named/etc/localtime }
 
 - name: Recursive copy of files
-  become: yes
-  command: cp -rf /var/named/* /chroot/named/var/named/
+  copy:
+    remote_src: yes
+    src: /var/named/
+    dest: /chroot/named/var/named/
 
 - name: Change owner and group
-  become: yes
   file:
     path: /chroot/named
     state: directory
@@ -38,21 +38,18 @@
     group: named
 
 - name: Make block
-  become: yes
   command: "{{ item }}"
   with_items:
     - "mknod /chroot/named/dev/null c 1 3"
     - "mknod /chroot/named/dev/random c 1 8"
 
 - name: Change permissions of dev directory
-  become: yes
   file:
     path: /chroot/named/dev
     state: directory
     mode: 0666
 
 - name: Append line to named file
-  become: yes
   lineinfile:
     path: /etc/sysconfig/named
     insertafter: EOF

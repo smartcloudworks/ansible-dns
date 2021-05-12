@@ -1,18 +1,15 @@
 ---
 - name: Firewall Reload
-  become: yes
-  command: systemctl firewall-cmd --reload
-  listen: "reload firewall"
+  command: firewall-cmd --reload
+  listen: "reload firewalld"
 
 - name: Bind Reload
-  become: yes
   systemd:
     name: named
     state: reloaded
   listen: "reload named"
 
 - name: Bind Restart
-  become: yes
   systemd:
     name: named
     state: restarted

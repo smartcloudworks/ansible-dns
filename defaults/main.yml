@@ -1,21 +1,25 @@
 ---
 # defaults reflect slave dns server configuration variables
-master_ipv4: "192.168.50.230"
-slave_ipv4: "192.168.50.232"
-network_range: "192.168.50.0/24"
 
+# must specify the following variables
+
+network_range: "192.168.50.0/24"
 domain: "special.localdomain"
+primary_ipv4: "192.168.50.231"
+secondary_ipv4: "192.168.50.232"
+server_name: "ns01"
+
+# end of specified variables
+
+
 
 server_ipv4: ""
 server_expire: "1W"
 server_fwd_zone_file: "fwd.{{ domain }}.db"
 server_minimum: "3H"
-server_name: "ns01"
 server_refresh: "1D"
 server_retry: "1H"
 server_serial: "1"
 server_type: ""
 
-valid_role_inputs:
-  - "master"
-  - "slave"
+zone_masters_entry: ""

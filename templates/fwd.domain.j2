@@ -1,4 +1,4 @@
-@       IN       SOA       {{ server_name }}.{{ domain }}. (
+@       IN       SOA       {{ server_name }}.{{ domain }}. admin.{{ domain }}. (
                        {{ server_serial }} ; serial
                        {{ server_refresh }} ; refresh
                        {{ server_retry }} ; retry
@@ -8,4 +8,4 @@
 ; name servers
 @       NS       {{ server_name }}.{{ domain }}.
 ; a records
-{{ server_name }}       IN       A       {{ slave_ipv4 }}
+{{ server_name }}       IN       A       {{ secondary_ipv4 }}
