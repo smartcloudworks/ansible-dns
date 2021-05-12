@@ -39,7 +39,7 @@ Before running playbook:
   192.168.50.231
 
   [dns_secondary]
-  192.168.50.231
+  192.168.50.232
 
 NOTE:
 - Primary server CANNOT be queried.
